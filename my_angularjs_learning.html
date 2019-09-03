@@ -11,9 +11,17 @@
     <div ng-app="myFirstApp">
         <p>Name: <input type="text" ng-init="name='world'" ng-model="name"></p>
         <p> Hello, {{name}}!</p>
+        <br/>
+        <my-first-directive></my-first-directive>
     </div>
     <script>
         var app = angular.module("myFirstApp", []);
+        app.directive("myFirstDirective", function() {
+            return {
+                restrict : "EACM", // can be invoked by element, attribute, class or comment respectively
+                template : "<p>My first directive!</p>"
+            };
+        });
     </script>
 </body>
 </html>
