@@ -9,13 +9,17 @@
 </head>
 <body>
     <div ng-app="myFirstApp" ng-controller="myFirstController">
-        <p> Name: <input type="text" ng-model="name"></p>
+        <p> Name: <input type="text" ng-model="name"></p> <!--name="world" because we use the controller's scope instead of $rootScope--> 
         <p ng-click="reset()"> Hello, {{name}}!</p>
         <br/>
         <my-first-directive ng-init="append='(1)'"></my-first-directive>
     </div>
     <script>
         var app = angular.module("myFirstApp", []);
+
+        app.run(function($rootScope) {
+            $rootScope.name = "World";
+        });
 
         app.controller('myFirstController', function($scope) {
             $scope.name = "world";
