@@ -9,10 +9,9 @@
 </head>
 <body>
     <div ng-app="myFirstApp" ng-controller="myFirstController">
-        <p> Name: <input type="text" ng-model="name"></p> <!--name="world" because we use the controller's scope instead of $rootScope--> 
+        <p> Name: <input type="text" ng-model="name"></p> <!--name="world" because we are using the controller's scope instead of $rootScope--> 
         <p ng-click="reset()"> Hello, {{name}}!</p>
-        <br/>
-        <my-first-directive ng-init="append='invoke (1)'"></my-first-directive>
+        <my-first-directive ng-init="name='world'"></my-first-directive>
     </div>
     <script>
         var app = angular.module("myFirstApp", []);
@@ -21,8 +20,9 @@
             $rootScope.name = "World";
         });
 
-        app.controller('myFirstController', function($scope) {
-            $scope.name = "world";
+        app.controller('myFirstController', function($scope, $location) {
+            $scope.name = "world!!!";
+            $scope.myUrl = $location.absUrl();
             $scope.reset = function() {
                 $scope.name = " ";
             };
@@ -31,7 +31,7 @@
         app.directive("myFirstDirective", function() {
             return {
                 restrict : "EACM", // can be invoked by element, attribute, class or comment respectively
-                template : "<p>My first directive {{append | uppercase}}!</p>"
+                template : "<p>{{myUrl | lowercase}}</p>"
             };
         });
     </script>
