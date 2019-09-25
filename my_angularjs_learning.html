@@ -8,10 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
-    <div ng-app="myFirstApp" ng-controller="myFirstController">
+    <div ng-app="myFirstApp" ng-controller="myFirstController" ng-mouseenter="showVar=true" ng-mouseleave="showVar=false">
         <p> Name: <input type="text" ng-model="name"></p> <!--name="world" because we are using the controller's scope instead of $rootScope--> 
         <p ng-click="reset()"> Hello, {{name}}!</p>
-        <my-first-directive ng-init="name='world'"></my-first-directive>
+        <my-first-directive ng-init="name='world'" ng-show="showVar"></my-first-directive>
     </div>
     <script>
         var app = angular.module("myFirstApp", []);
@@ -23,6 +23,7 @@
         app.controller('myFirstController', function($scope, $location) {
             $scope.name = "world!!!";
             $scope.myUrl = $location.absUrl();
+            $scope.showVar = false;
             $scope.reset = function() {
                 $scope.name = " ";
             };
