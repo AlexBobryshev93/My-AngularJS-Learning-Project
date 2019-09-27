@@ -9,11 +9,13 @@
 </head>
 <body>
     <div ng-app="myFirstApp" ng-controller="myFirstController" ng-mouseenter="showVar=true" ng-mouseleave="showVar=false">
+        <h2>Enter your name:</h2>
         <form name="myForm">
         <p> Name: <input type="text" name="username" ng-model="name" ng-required="true"></p> <!--name="world" because we are using the controller's scope instead of $rootScope--> 
         </form>
         <p ng-click="reset()" ng-show="myForm.username.$valid"> Hello, {{name}}!</p>
         <my-first-directive ng-init="name='world'" ng-show="showVar"></my-first-directive>
+        <h3>Move the cursor above this inscription to see the URL of this page</h3>
     </div>
     <script>
         var app = angular.module("myFirstApp", []);
